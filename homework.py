@@ -18,7 +18,6 @@ class InfoMessage:
                  distance: float,
                  speed: float,
                  calories: float) -> None:
-   """Инициализация вводных Инофрмационного сообщения"""
         self.training_type = training_type
         self.duration = duration
         self.distance = distance
