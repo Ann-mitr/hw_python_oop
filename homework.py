@@ -93,8 +93,6 @@ class SportsWalking(Training):
         self.height = height
 
     def get_spent_calories(self) -> float:
-        speed_in_sec = (self.get_mean_speed() * self.MIN_IN_H * self.MIN_IN_H
-                        / self.M_IN_KM)
         return ((self.CALORIES_WEIGHT_MULTIPLIER * self.weight
                 + (self.get_mean_speed()**2 // self.height)
                 * self.CALORIES_MEAN_SPEED_SHIFT * self.weight)
@@ -157,7 +155,6 @@ if __name__ == '__main__':
         ('RUN', [15000, 1, 75]),
         ('WLK', [9000, 1, 75, 180])
     ]
-    
 
     for workout_type, data in packages:
         training = read_package(workout_type, data)
