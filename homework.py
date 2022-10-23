@@ -96,7 +96,7 @@ class SportsWalking(Training):
         speed_in_sec = (self.get_mean_speed() * self.MIN_IN_H * self.MIN_IN_H
                         / self.M_IN_KM)
         return ((self.CALORIES_WEIGHT_MULTIPLIER * self.weight
-                + (speed_in_sec**2 // self.height)
+                + (self.get_mean_speed()**2 // self.height)
                 * self.CALORIES_MEAN_SPEED_SHIFT * self.weight)
                 * self.duration * self.MIN_IN_H)
 
@@ -157,6 +157,10 @@ if __name__ == '__main__':
         ('RUN', [15000, 1, 75]),
         ('WLK', [9000, 1, 75, 180])
     ]
+        #(SWM, [420, 4, 20, 42, 4]),
+        #(SWM, [1206, 12, 6, 12, 6]),
+        #(WLK, [420, 4, 20, 42]),
+        #(WLK, [1206, 12, 6, 12])
 
     for workout_type, data in packages:
         training = read_package(workout_type, data)
