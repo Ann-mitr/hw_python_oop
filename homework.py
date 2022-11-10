@@ -11,12 +11,12 @@ class InfoMessage:
     distance: float
     speed: float
     calories: float
-    message: str
 
-    message = ('Тип тренировки: {training_type}; '
-               'Длительность: {duration:.3f} ч.; '
-               'Дистанция: {distance:.3f} км; Ср. скорость: {speed:.3f} км/ч; '
-               'Потрачено ккал: {calories:.3f}.')
+    message: str = ('Тип тренировки: {training_type}; '
+                    'Длительность: {duration:.3f} ч.; '
+                    'Дистанция: {distance:.3f} км; '
+                    'Ср. скорость: {speed:.3f} км/ч; '
+                    'Потрачено ккал: {calories:.3f}.')
 
     def get_message(self) -> str:
         return self.message.format(**asdict(self))
@@ -44,7 +44,6 @@ class Training:
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-        pass
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
@@ -122,12 +121,7 @@ def read_package(workout_type: str, data: list) -> Training:
         'SWM': Swimming,
         'RUN': Running,
         'WLK': SportsWalking}
-    if workout_type in training_code.keys():
-        training_dist = (training_code[workout_type](*data))
-        return training_dist
-    else:
-        print(f'Тип тренировки {workout_type} не допустим')
-        return
+    return training_code[workout_type](*data)
 
 
 def main(training: Training) -> None:
